@@ -5,4 +5,5 @@ Work in progress
 - [Neurosimulator ANNarchy](https://www.tu-chemnitz.de/informatik/KI/projects/ANNarchy/index.php)
 - [Tensorflow](https://www.tensorflow.org/)
 - [Docker](https://www.tensorflow.org/)
-- [nvidia-docker](https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/)
+- [nvidia-docker dev blog](https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/)
+- [nvidia-docker repo](https://github.com/NVIDIA/nvidia-docker)
