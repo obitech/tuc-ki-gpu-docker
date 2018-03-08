@@ -16,11 +16,11 @@ Usage:
     $ bash bootstrap-docker-mint.sh [OPTIONS]
 
 Options:
-    - h                     Display this help
-    - r <release>           Specify the Ubuntu release package base necessary for Linux Mint (default: ${RELEASE})
-    - f <fingerprint>       Specify Dockers GPG key fingerprint (default: ${FINGERPRINT})
-    - v <version>           Specify docker-compose version to be installed. (default: ${COMPOSE_VERSION}, supported: ${SUPPORTED[@]})
-    - u                     Unattended installation, does not prompt user.
+    -h                      Display this help
+    -r <release>            Specify the Ubuntu release package base necessary for Linux Mint (default: ${RELEASE})
+    -f <fingerprint>        Specify Dockers GPG key fingerprint (default: ${FINGERPRINT})
+    -v <version>            Specify docker-compose version to be installed. (default: ${COMPOSE_VERSION}, supported: ${SUPPORTED[@]})
+    -u                      Unattended installation, does not prompt user.
 
 Notes:
     In order to find out which release name to pass to the -r flag, do the following:
