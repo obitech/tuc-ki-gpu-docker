@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  xenial = "bento/ubuntu-16.04"
+  trusty = "bento/ubuntu-14.04"
+
+  config.vm.define :tuc_ki_gpu_docker_test, primary: true do |main_conf|
+    main_conf.vm.box = "#{xenial}"
+    main_conf.vm.network "private_network", ip: "192.168.70.10" 
+    
+    main_conf.vm.provision "docker_provision", type: "shell", inline: <<-SHELL
+      cp /vagrant/bootstrap-docker-mint.sh /tmp
+      echo "Connect to your box with vagrant ssh and run bash /tmp/bootstrap-docker-mint.sh"
+    SHELL
+
+    main_conf.vm.provision "dotfiles", type: "shell", inline: <<-SHELL
+      curl -s -o ~/.vimrc https://raw.githubusercontent.com/obitech/dotfiles/master/.vimrc
+    SHELL
+
+    # VirtualBox settings
+    main_conf.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = 1
+      vb.name = "tuc_ki_gpu_docker_test"
+    end
+  end
+end
+
+
