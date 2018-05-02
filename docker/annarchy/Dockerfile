@@ -1,6 +1,6 @@
-ARG cuda=8.0
+ARG cuda=9.0
 
-FROM nvidia/cuda:$cuda-runtime
+FROM nvidia/cuda:$cuda-devel
 
 RUN apt-get update \
     && apt-get install -y \
