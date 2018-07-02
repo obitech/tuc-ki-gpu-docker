@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  vm_name = "demo"
+
+  config.vm.define "#{vm_name}", primary: true do |master|
+    master.vm.box = "bento/ubuntu-16.04"
+    master.vm.hostname = vm_name + ".local"
+
+    master.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 1
+      vb.name = "#{vm_name}"
+    end
+
+    master.vm.synced_folder "share", "/home/vagrant/share"
+
+    master.vm.provision "basic", type: "shell", inline: <<-SHELL
+        apt-get update
+        apt-get install -y bash-completion tree python-pip htop
+        pip install --upgrade pip
+        pip install virtualenv
+    SHELL
+
+    master.vm.provision "docker"
+
+    master.vm.provision "compose", type: "shell", inline: <<-SHELL
+        curl -SsL https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
+        curl -SsL https://raw.githubusercontent.com/docker/compose/1.21.2/contrib/completion/bash/docker-compose -o /usr/share/bash-completion/completions/docker-compose
+    SHELL
+
+    master.vm.provision "jibjib", type: "shell", inline: <<-SHELL
+        cd /home/vagrant
+        git clone https://github.com/gojibjib/jibjib-model
+        git clone https://github.com/gojibjib/jibjib-query
+    SHELL
+  end
+end
