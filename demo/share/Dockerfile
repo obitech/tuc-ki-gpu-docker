@@ -1,3 +1,10 @@
+# docker run --rm \
+#     --runtime=nvidia \
+#     -v $(pwd)/input:/model/input \
+#     -v $(pwd)/output:/model/output \
+#     -e NVIDIA_VISIBLE_DEVICES=0 \
+#     sample-model
+
 ARG build=latest-gpu
 
 FROM tensorflow/tensorflow:$build
