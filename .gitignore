@@ -1,4 +1,4 @@
-demo/share/*
+demo/share/py2env
 *.pdf
 results/
 
